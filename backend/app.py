@@ -8,7 +8,7 @@ import os
 import google.generativeai as genai
 from IPython.display import display, Markdown
 
-genai.configure(api_key='AIzaSyAew8iKWojPlMqXS_vx41V0PSPbddUdrSI')
+genai.configure(api_key='GOOGLE_API_KEY_HERE')
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 app = Flask(__name__)
