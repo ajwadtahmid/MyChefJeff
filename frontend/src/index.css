@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-<<<<<<< HEAD
 
 * {
     scroll-behavior: smooth;
@@ -33,11 +32,3 @@
     transform-style: preserve-3d;
     perspective: 1000px;
 }
-=======
-
-.text-gradient {
-  background: linear-gradient(180deg, #008080 0%, #007D7D 30%, #8DA3A3 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
->>>>>>> origin/master
