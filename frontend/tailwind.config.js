@@ -34,7 +34,12 @@ export default {
                 'h6': '20px',
                 'paragraph': '18px'
             },
+<<<<<<< HEAD
+            backgroundImage: theme => ({'primary-gradient': `linear-gradient(90deg, ${theme('colors.primary.500')} 0%, ${theme('colors.primary.600')} 50%, ${theme('colors.primary.300')} 100%)`}),
+            backgroundColor: theme => ({'default': theme('colors.customGray')})
+=======
             backgroundImage: theme => ({'primary-gradient': `linear-gradient(90deg, ${theme('colors.primary.500')} 0%, ${theme('colors.primary.600')} 50%, ${theme('colors.primary.300')} 100%)`})
+>>>>>>> origin/master
         }
     },
     plugins : []

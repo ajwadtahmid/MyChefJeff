@@ -1,9 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
+
+* {
+    scroll-behavior: smooth;
+}
+
+.text-gradient {
+    background: linear-gradient(180deg, #008080 0%, #007D7D 30%, #8DA3A3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@keyframes floating3d {
+    0%,
+    100% {
+        transform: translateY(0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    25% {
+        transform: translateY(-5px) rotateX(5deg) rotateY(-5deg) rotateZ(2.5deg);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(10deg) rotateY(5deg) rotateZ(-2.5deg);
+    }
+    75% {
+        transform: translateY(-5px) rotateX(-5deg) rotateY(5deg) rotateZ(2.5deg);
+    }
+}
+
+.floating-3d {
+    animation: floating3d 9s ease-in-out infinite;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+=======
 
 .text-gradient {
   background: linear-gradient(180deg, #008080 0%, #007D7D 30%, #8DA3A3 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+>>>>>>> origin/master
