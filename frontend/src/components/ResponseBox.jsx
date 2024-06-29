@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 
 const ResponseBox = ({messages, isTyping}) => {
+    const containerRef = useRef(null);
+
+    // Scroll to the bottom of the container when new messages are added
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
+        }
+    }, [messages]);
+
     return (
         <div
-            className="fixed top-0 right-0 w-full sm:w-1/4 h-full p-2 sm:p-4 bg-customGray overflow-y-auto shadow-lg">
-            <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 text-white">Responses</h2>
-            <div className="max-h-full overflow-y-auto">
+            className="fixed top-0 right-0 w-full sm:w-1/4 h-1/2 p-2 sm:p-4 bg-customGray shadow-lg">
+            <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 text-white">Chef's Response</h2>
+            <div ref={containerRef} className="flex-col sm:max-h-full overflow-y-auto">
                 {messages.map((msg, index) => (
                     <div
                         key={index}

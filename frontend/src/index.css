@@ -65,15 +65,25 @@
 .talk {
     animation: talkTransition 1s infinite;
 }
-
-.typing-cursor {
-    display: inline-block;
-    width: 1px;
-    background-color: black;
-    animation: blink 1s steps(2, start) infinite;
-}
-@keyframes blink {
-    to {
-        visibility: hidden;
+@keyframes loading {
+    0% {
+        transform: scale(1);
     }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.loading-animation {
+    animation: loading 3s infinite;
+}
+
+/* Ensure the ResponseBox has a max height and is scrollable */
+.response-box {
+    max-height: calc(100vh - 4rem);
+    /* Adjust this value based on your header height */
+    overflow-y: auto;
 }
