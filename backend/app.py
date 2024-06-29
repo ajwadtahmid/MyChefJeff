@@ -43,6 +43,7 @@ def ai_chat(message):
 def chat_endpoint():
     data = request.get_json()
     message = data.get('message', '')
+    message_type = data.get('type', 'general')
 
     #log incoming message
     logging.info(f'User: {message}')
@@ -52,6 +53,14 @@ def chat_endpoint():
 
     #log AI response
     logging.info(f'AI: {response}')
+
+    # Process message based on type
+    if message_type == 'recipe':
+        response = get_recipe(message)
+    elif message_type == 'budget':
+        response = get_budget_plan(message)
+    else:
+        response = ai_chat(message)
 
     return jsonify({'response': response})
 
