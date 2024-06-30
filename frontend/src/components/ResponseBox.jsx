@@ -1,4 +1,5 @@
 import React, {useRef, useEffect} from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const ResponseBox = ({messages, isTyping}) => {
     const containerRef = useRef(null);
@@ -21,7 +22,7 @@ const ResponseBox = ({messages, isTyping}) => {
                         className={`p-2 rounded-lg mb-2 ${msg.type === 'received'
                         ? 'bg-gray-300 text-black'
                         : 'bg-blue-500 text-white self-end'}`}>
-                        {msg.text}
+                        <ReactMarkdown>{msg.text}</ReactMarkdown>
                     </div>
                 ))}
                 {isTyping && (

@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-
+import ReactMarkdown from 'react-markdown';
 import Chatbox from './Chatbox';
 import ChefJeff from './ChefJeff';
 import ResponseBox from './ResponseBox';
 import Prompt from './Prompt';
 
 const Hero = () => {
-    const [animationState, setAnimationState] = useState('smiling');
-    const [messages, setMessages] = useState([]);
-    const [isTyping, setIsTyping] = useState(false);
-    const [selectedButton, setSelectedButton] = useState(null);
+    const [animationState,
+        setAnimationState] = useState('smiling');
+    const [messages,
+        setMessages] = useState([]);
+    const [isTyping,
+        setIsTyping] = useState(false);
+    const [selectedButton,
+        setSelectedButton] = useState(null);
 
-    const handleSendMessage = async (message) => {
+    const handleSendMessage = async(message) => {
         setAnimationState('loading');
         const newMessage = {
             text: message,
             type: 'sent'
         };
-        const newMessages = [...messages, newMessage];
+        const newMessages = [
+            ...messages,
+            newMessage
+        ];
         setMessages(newMessages);
 
         // Simulate typing indicator
@@ -27,7 +34,7 @@ const Hero = () => {
         }, 1000); // Typing indicator delay
 
         try {
-            const response = await axios.post('http://localhost:5000/api/message', {
+            const response = await axios.post('http://localhost:8000/api/message', {
                 message,
                 type: selectedButton.toLowerCase()
             });
@@ -37,8 +44,7 @@ const Hero = () => {
             setAnimationState('talking');
             setIsTyping(false);
             setMessages((prevMessages) => [
-                ...prevMessages,
-                {
+                ...prevMessages, {
                     text: apiResponse,
                     type: 'received'
                 }
@@ -53,8 +59,7 @@ const Hero = () => {
             setIsTyping(false);
             setAnimationState('smiling');
             setMessages((prevMessages) => [
-                ...prevMessages,
-                {
+                ...prevMessages, {
                     text: 'Sorry, something went wrong.',
                     type: 'received'
                 }
@@ -82,8 +87,7 @@ const Hero = () => {
         }
 
         const newMessages = [
-            ...messages,
-            {
+            ...messages, {
                 text: responseMessage,
                 type: 'received'
             }
@@ -92,19 +96,20 @@ const Hero = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-start bg-customGray relative p-4 pt-16">
+        <div
+            className="min-h-screen flex flex-col items-center justify-start bg-customGray relative p-4 pt-16">
             <div className="flex flex-col items-center justify-center w-full mb-8">
-                <ChefJeff animationState={animationState} />
+                <ChefJeff animationState={animationState}/>
                 <div className="p-1">
-                    <Prompt onButtonClick={handleButtonClick} />
+                    <Prompt onButtonClick={handleButtonClick}/>
                 </div>
             </div>
-            {selectedButton && (
-                <>
-                    <Chatbox onSendMessage={handleSendMessage} />
-                    <ResponseBox messages={messages} isTyping={isTyping} />
-                </>
-            )}
+            {selectedButton && (<> <Chatbox onSendMessage={handleSendMessage}/> < ResponseBox messages = {
+                messages
+            }
+            isTyping = {
+                isTyping
+            } /> </>)}
         </div>
     );
 };
