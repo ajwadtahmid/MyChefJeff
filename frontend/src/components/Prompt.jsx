@@ -12,7 +12,7 @@
 
 import Budget from '../assets/buttons/budget.svg';
 import Plan from '../assets/buttons/plan.svg';
-import Recipie from '../assets/buttons/recipie.svg';
+import Recipe from '../assets/buttons/recipes.svg';
 
 const Prompt = ({onButtonClick, selectedButton}) => {
     const handleButtonClick = (buttonLabel) => {
@@ -37,7 +37,7 @@ const Prompt = ({onButtonClick, selectedButton}) => {
                 alt="Plan"
                 className={getButtonStyle('Plan')}
                 onClick={() => handleButtonClick('Plan')}/>
-            <img src={Recipie} alt="Recipie" // Ensure this matches the case in handleButtonClick switch statement
+            <img src={Recipe} alt="Recipie" // Ensure this matches the case in handleButtonClick switch statement
                 className={getButtonStyle('Recipie')} onClick={() => handleButtonClick('Recipie')}/>
         </div>
     );
