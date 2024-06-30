@@ -59,21 +59,21 @@ def ai_chat(message):
 
 def get_recipe(message):
 
-    prompt = f'You are MyChefJeff, an AI-driven chef. Find a recipe for: {message}'
+    prompt = f'You are MyChefJeff, an AI-driven chef. Find one recipe for: {message}. Do not exceed 600 charecters.'
     response = ai_chat(prompt)
     response
 
 
 def get_budget_plan(message):
 
-    prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with a budget of: {message}'
+    prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with a budget of: {message}. Make it a list and do not exceed 600 charecters.'
     response = ai_chat(prompt)
     return response
 
 
 def prepare_meal_plan(message):
 
-    prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with these ingredients : {message}'
+    prompt = f'You are MyChefJeff, an AI-driven chef. Create a weekly meal plan with these ingredients : {message}. Keep it concise'
     response = ai_chat(prompt)
     return response
 
