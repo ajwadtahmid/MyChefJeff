@@ -4,6 +4,8 @@ import ChefJeff from './ChefJeff';
 import ResponseBox from './ResponseBox';
 import Prompt from './Prompt';
 
+import useFetchMessage from './fetchMessage';
+
 const Hero = () => {
     const [animationState,
         setAnimationState] = useState('smiling');
@@ -50,7 +52,7 @@ const Hero = () => {
         }, 1000); // Typing indicator delay
     };
 
-    const handleButtonClick = (buttonLabel) => {
+    const handleButtonClick = async (buttonLabel) => {
         setSelectedButton(buttonLabel);
         console.log(`${buttonLabel} clicked`);
 
@@ -69,6 +71,9 @@ const Hero = () => {
                 responseMessage = "How can I assist you today?";
         }
 
+        const responseData = await useFetchMessage(buttonLabel);
+
+        responseMessage = responseData.response;
         const newMessages = [
             ...messages, {
                 text: responseMessage,
