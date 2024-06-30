@@ -23,3 +23,14 @@
 
 ### Come Check it Out! 
 https://mychefjeff.netlify.app/ 
+
+
+### Calcodefest Project
+
+We submitted this project to <a href="https://calcodefest.devpost.com/"  target="_blank"> CalCodeFest </a> thus completing all of our very first Hackathon!
+
+
+### Contributions: 
+- David (Frontend)
+- Ajwad (Frontend / Backend)
+- Leyna (Backend)
