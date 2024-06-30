@@ -1,3 +1,18 @@
+/**
+ * Hero Component
+ *
+ * This component serves as the main interface for the AI chatbot, handling user interactions
+ * and communicating with the backend API. It maintains the state of the chat, including messages,
+ * typing indicators, and animation states. It uses various child components to provide a
+ * responsive and interactive chat experience.
+ *
+ *
+ * Functions:
+ * - handleSendMessage: Sends a message to the backend API and updates the state.
+ * - handleButtonClick: Handles button clicks and updates the chat messages.
+ * - handleReset: Resets the chat and sends a reset request to the backend API.
+ */
+
 import React, {useState} from 'react';
 import axios from 'axios';
 import Chatbox from './Chatbox';
@@ -31,16 +46,15 @@ const Hero = () => {
         setMessages(newMessages);
 
         if (!reset) {
-            // Simulate typing indicator
             setTimeout(() => {
                 setIsTyping(true);
-            }, 500); // Typing indicator delay
+            }, 500);
         } else {
-            setIsTyping(false); // Ensure typing animation is not shown for reset
+            setIsTyping(false);
         }
 
         try {
-            const response = await axios.post('http://localhost:8000/api/message', {
+            const response = await axios.post('https://chefjeff.pythonanywhere.com/api/message', {
                 message,
                 type: selectedButton
                     ? selectedButton.toLowerCase()
@@ -48,7 +62,7 @@ const Hero = () => {
                 reset
             });
 
-            const apiResponse = response.data.response; // Assuming your API response structure
+            const apiResponse = response.data.response;
 
             setAnimationState('talking');
             setMessages((prevMessages) => [
@@ -85,7 +99,7 @@ const Hero = () => {
             case 'Plan':
                 responseMessage = "Awesome! Let's plan your meals. Do you have any dietary preferences?";
                 break;
-            case 'Recipie': // Ensure this matches the label used in Prompt component
+            case 'Recipie':
                 responseMessage = "Sure! Let's find a recipe for you. What ingredients do you have?";
                 break;
             default:
@@ -102,7 +116,6 @@ const Hero = () => {
     };
 
     const handleReset = async() => {
-        // Send a reset request to the backend to clear the AI history
         try {
             await axios.post('http://localhost:8000/api/message', {
                 message: '',
@@ -113,8 +126,7 @@ const Hero = () => {
             console.error('Error resetting AI:', error);
         }
 
-        // Reset all states to initial values without triggering animations or sending
-        // messages
+        // Reset all states to initial values
         setSelectedButton(null);
         setMessages([]);
         setIsTyping(false);

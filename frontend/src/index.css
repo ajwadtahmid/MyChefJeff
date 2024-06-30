@@ -81,9 +81,7 @@
     animation: loading 3s infinite;
 }
 
-/* Ensure the ResponseBox has a max height and is scrollable */
 .response-box {
     max-height: calc(100vh - 4rem);
-    /* Adjust this value based on your header height */
     overflow-y: auto;
 }

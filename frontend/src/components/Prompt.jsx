@@ -1,4 +1,14 @@
-import React from 'react';
+/**
+ * Prompt Component
+ *
+ * This component displays a set of buttons that users can click to initiate different actions
+ * such as Budget, Plan, and Recipe. It communicates the selected button to the parent component
+ * through the onButtonClick callback.
+ *
+ * Functions:
+ * - handleButtonClick: Calls the onButtonClick callback with the button label.
+ * - getButtonStyle: Returns the appropriate style for a button based on whether it is selected.
+ */
 
 import Budget from '../assets/buttons/budget.svg';
 import Plan from '../assets/buttons/plan.svg';

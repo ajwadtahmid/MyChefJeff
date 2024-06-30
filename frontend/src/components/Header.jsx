@@ -1,3 +1,12 @@
+/**
+ * Header Component
+ *
+ * This component renders the header of the application, displaying the brand logo and ensuring
+ * it stays fixed at the top of the page. The header is styled to be responsive and visually appealing
+ * with custom background colors and spacing.
+ *
+ */
+
 import brand from '../assets/brand.svg';
 
 const Header = () => {

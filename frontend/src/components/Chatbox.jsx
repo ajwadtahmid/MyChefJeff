@@ -1,3 +1,15 @@
+/**
+ * Chatbox Component
+ *
+ * This component provides an input field for the user to type and send messages. It handles
+ * message input, sending messages on button click or Enter key press, and communicates with
+ * the parent component to send the message.
+ *
+ * Functions:
+ * - handleSendMessage: Sends the message if it's not empty and resets the input field.
+ * - handleKeyDown: Sends the message when the Enter key is pressed.
+ */
+
 import React, {useState} from 'react';
 
 const Chatbox = ({onSendMessage}) => {

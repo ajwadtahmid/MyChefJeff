@@ -1,10 +1,19 @@
+/**
+ * ResponseBox Component
+ *
+ * This component is responsible for displaying the chat messages between the user and the AI,
+ * as well as indicating when the AI is typing. It also includes a button to reset the conversation.
+ * Functions:
+ * - useEffect: Automatically scrolls to the bottom of the message container when new messages are added.
+ */
+
 import React, {useRef, useEffect} from 'react';
 import ReactMarkdown from 'react-markdown';
 
 const ResponseBox = ({messages, isTyping, handleReset}) => {
     const containerRef = useRef(null);
 
-    // Scroll to the bottom of the container when new messages are added
+    // Scroll to the bottom of the container
     useEffect(() => {
         if (containerRef.current) {
             containerRef.current.scrollTop = containerRef.current.scrollHeight;

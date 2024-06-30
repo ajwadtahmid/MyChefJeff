@@ -1,3 +1,16 @@
+/**
+ * ChefJeff Component
+ *
+ * This component displays an animated character, Chef Jeff, whose appearance changes based
+ * on the provided animation state. It supports different animations such as smiling and talking,
+ * and includes a 3D effect that follows the user's mouse movement.
+ *
+ * Functions:
+ * - useEffect (Mouse Move): Adds a mouse move listener to create the 3D rotation effect.
+ * - useEffect (Animation State): Changes the image based on the animation state.
+ * - useEffect (Talking Animation): Handles the talking animation by toggling between open and closed mouth images.
+ */
+
 import React, {useState, useEffect} from 'react';
 import chefJeffSmile from "../assets/chef_smile.svg";
 import chefJeffTalkingOpen from "../assets/chef_jeff_talking_open.svg";
