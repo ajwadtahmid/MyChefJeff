@@ -40,7 +40,7 @@ const Hero = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8000/api/message', {
+            const response = await axios.post('https://chefjeff.pythonanywhere.com/api/message', {
                 message,
                 type: selectedButton
                     ? selectedButton.toLowerCase()
