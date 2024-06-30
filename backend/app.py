@@ -10,7 +10,7 @@ import google.generativeai as genai
 from IPython.display import display, Markdown
 
 #init generative AI model
-genai.configure(api_key='GOOGLE_API_KEY_HERE')
+genai.configure(api_key='AIzaSyCDvk2x357mxzRVo2f0INMdj2D6HbS9ftE')
 model = genai.GenerativeModel('gemini-1.5-flash')
 model_j = genai.GenerativeModel('gemini-1.5-flash',
 # Set the `response_mime_type` to output JSON
@@ -25,7 +25,7 @@ chat = model.start_chat(history=[])
 #user_info
 user_height = 175
 user_weight = 150
-user_allergies = ["nuts", "shellfish"]
+user_allergies = {"nuts", "shellfish"}
 user_budget = 500
 
 
@@ -54,68 +54,58 @@ def init_run(user_height, user_weight, user_budget, user_allergies):
 def ai_chat(message):
     global chat
     response = chat.send_message(message)
-    return response
+    return response.text
 
 
-@app.route('/get_recipe', methods=['POST'])
-def get_recipe():
-    data = request.get_json()
-    message = data.get('message')
+def get_recipe(message):
 
     prompt = f'You are MyChefJeff, an AI-driven chef. Find a recipe for: {message}'
     response = ai_chat(prompt)
-    return jsonify({"response": response}), 200
+    response
 
 
-@app.route('/get_budget_plan', methods=['POST'])
-def get_budget_plan():
-    data = request.get_json()
-    message = data.get('message')
+def get_budget_plan(message):
 
     prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with a budget of: {message}'
     response = ai_chat(prompt)
-    return jsonify({"response": response}), 200
+    return response
 
 
-@app.route('/prepare_meal_plan', methods=['POST'])
-def prepare_meal_plan():
-    data = request.get_json()
-    message = data.get('message')
+def prepare_meal_plan(message):
 
     prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with these ingredients : {message}'
     response = ai_chat(prompt)
-    return jsonify({"response": response}), 200
+    return response
+
 
 @app.route('/api/message', methods=['POST'])
 def chat_endpoint():
-    data = request.get_json()
-    message = data.get('message', '')
-    message_type = data.get('type', 'general')
+    try:
+        data = request.get_json()
+        message = data.get('message', '')
+        message_type = data.get('type', 'general')
 
-    #log incoming message
-    logging.info(f'User: {message}')
+        # Log incoming message
+        logging.info(f'User: {message}')
 
-    #process message
-    response = ai_chat(message)
+        # Process message based on type
+        if message_type == 'recipe':
+            response = get_recipe(message)
+        elif message_type == 'budget':
+            response = get_budget_plan(message)
+        else:
+            response = ai_chat(message)
 
-    #log AI response
-    logging.info(f'AI: {response}')
+        # Log AI response
+        logging.info(f'AI: {response}')
 
-    # Process message based on type
-    if message_type == 'Plan':
-        response = prepare_meal_plan(message)
-    elif message_type == 'Budget':
-        response = get_budget_plan(message)
-    elif message_type == 'Recipie':
-        response = get_recipe(message)
-    else:
-        response = ai_chat(message)
+        # Return JSON response
+        return jsonify({'response': response}), 200
 
-    return jsonify({'response': response})
+    except Exception as e:
+        logging.error(f"Error in chat endpoint: {e}")
+        return jsonify({'error': 'Internal Server Error', 'details': str(e)}), 500
 
-@app.route('/api/message', methods=['GET'])
-def get_message():
-    return jsonify({'message': 'Hello from Flask!'})
 
 if __name__ == '__main__':
     app.run(debug=True)
