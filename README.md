@@ -32,5 +32,5 @@ We submitted this project to <a href="https://calcodefest.devpost.com/"  target=
 
 ### Contributions: 
 - David (Frontend)
-- Ajwad (Frontend / Backend)
 - Leyna (Backend)
+- Ajwad (Frontend / Backend)
