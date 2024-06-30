@@ -13,7 +13,7 @@ const ResponseBox = ({messages, isTyping}) => {
 
     return (
         <div
-            className="fixed top-0 right-0 w-full sm:w-1/4 h-1/2 p-2 sm:p-4 bg-customGray shadow-lg">
+            className="fixed top-0 right-0 w-full sm:w-1/4 h-[45rem] p-2 sm:p-4 bg-customGray shadow-lg">
             <h2 className="text-lg sm:text-xl font-bold mb-2 sm:mb-4 text-white">Chef's Response</h2>
             <div ref={containerRef} className="flex-col sm:max-h-full overflow-y-auto">
                 {messages.map((msg, index) => (
