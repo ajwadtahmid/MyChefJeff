@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import ReactMarkdown from 'react-markdown';
 
-const ResponseBox = ({messages, isTyping}) => {
+const ResponseBox = ({messages, isTyping, handleReset}) => {
     const containerRef = useRef(null);
 
     // Scroll to the bottom of the container when new messages are added
@@ -31,6 +31,11 @@ const ResponseBox = ({messages, isTyping}) => {
                     </div>
                 )}
             </div>
+            <button
+                onClick={handleReset}
+                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded w-full">
+                Reset Conversation
+            </button>
         </div>
     );
 };

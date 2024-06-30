@@ -1,15 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import Budget from '../assets/buttons/budget.svg';
 import Plan from '../assets/buttons/plan.svg';
 import Recipie from '../assets/buttons/recipie.svg';
 
-const Prompt = ({onButtonClick}) => {
-    const [selectedButton,
-        setSelectedButton] = useState(null);
-
+const Prompt = ({onButtonClick, selectedButton}) => {
     const handleButtonClick = (buttonLabel) => {
-        setSelectedButton(buttonLabel);
         onButtonClick(buttonLabel);
     };
 
@@ -31,11 +27,8 @@ const Prompt = ({onButtonClick}) => {
                 alt="Plan"
                 className={getButtonStyle('Plan')}
                 onClick={() => handleButtonClick('Plan')}/>
-            <img
-                src={Recipie}
-                alt="Recipie"
-                className={getButtonStyle('Recipie')}
-                onClick={() => handleButtonClick('Recipie')}/>
+            <img src={Recipie} alt="Recipie" // Ensure this matches the case in handleButtonClick switch statement
+                className={getButtonStyle('Recipie')} onClick={() => handleButtonClick('Recipie')}/>
         </div>
     );
 };

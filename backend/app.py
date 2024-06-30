@@ -51,22 +51,25 @@ def init_run(user_height, user_weight, user_budget, user_allergies):
     return ingredients_list, response
 
 
-def ai_chat(message):
+def ai_chat(message, reset=False):
     global chat
+    if reset:
+        chat = model.start_chat(history=[])
+        
     response = chat.send_message(message)
     return response.text
 
 
 def get_recipe(message):
 
-    prompt = f'You are MyChefJeff, an AI-driven chef. Find one recipe for: {message}. Do not exceed 600 charecters.'
+    prompt = f'You are MyChefJeff, an AI-driven chef. Find one recipe for: {message}. Be short and concise, but provide a price breakdown.'
     response = ai_chat(prompt)
     response
 
 
 def get_budget_plan(message):
 
-    prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with a budget of: {message}. Make it a list and do not exceed 600 charecters.'
+    prompt = f'You are MyChefJeff, an AI-driven chef. Create a meal plan with a budget of: {message}. Be short and concise.'
     response = ai_chat(prompt)
     return response
 
@@ -84,17 +87,18 @@ def chat_endpoint():
         data = request.get_json()
         message = data.get('message', '')
         message_type = data.get('type', 'general')
+        reset = data.get('reset', False)
 
         # Log incoming message
         logging.info(f'User: {message}')
 
-        # Process message based on type
+        # Process message based on type and reset status
         if message_type == 'recipe':
             response = get_recipe(message)
         elif message_type == 'budget':
             response = get_budget_plan(message)
         else:
-            response = ai_chat(message)
+            response = ai_chat(message, reset=reset)
 
         # Log AI response
         logging.info(f'AI: {response}')
@@ -105,7 +109,6 @@ def chat_endpoint():
     except Exception as e:
         logging.error(f"Error in chat endpoint: {e}")
         return jsonify({'error': 'Internal Server Error', 'details': str(e)}), 500
-
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
